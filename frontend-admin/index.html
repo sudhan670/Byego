@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Org Admin — Byego Feature Flags</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Organization Admin</h1>
+      <p class="subtitle">Manage feature flags for your organization</p>
+    </header>
+
+    <div id="auth-section" class="card">
+      <div class="tabs">
+        <button type="button" class="tab active" data-tab="login">Login</button>
+        <button type="button" class="tab" data-tab="signup">Sign up</button>
+      </div>
+
+      <form id="login-form" class="auth-form">
+        <h2>Login</h2>
+        <label>Email<input type="email" id="login-email" required /></label>
+        <label>Password<input type="password" id="login-password" required /></label>
+        <button type="submit">Sign in</button>
+      </form>
+
+      <form id="signup-form" class="auth-form hidden">
+        <h2>Sign up</h2>
+        <label>Email<input type="email" id="signup-email" required /></label>
+        <label>Password <span class="hint">(min 8 characters)</span>
+          <input type="password" id="signup-password" required minlength="8" />
+        </label>
+        <label>Organization slug
+          <input type="text" id="signup-org-slug" required placeholder="acme-corp" />
+        </label>
+        <button type="submit">Create account</button>
+      </form>
+
+      <p id="auth-error" class="error hidden"></p>
+    </div>
+
+    <div id="dashboard" class="hidden">
+      <div class="toolbar">
+        <div>
+          <strong id="user-email"></strong>
+          <span class="hint" id="org-info"></span>
+        </div>
+        <button type="button" id="logout-btn" class="btn-secondary">Logout</button>
+      </div>
+
+      <div class="card">
+        <h2>Create Feature Flag</h2>
+        <form id="create-flag-form">
+          <label>Feature key
+            <input type="text" id="flag-key" required placeholder="dark_mode" pattern="[a-z][a-z0-9_]*" />
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="flag-enabled" /> Enabled
+          </label>
+          <label>Description <span class="hint">(optional)</span>
+            <input type="text" id="flag-description" placeholder="Enables dark mode UI" />
+          </label>
+          <button type="submit">Create flag</button>
+        </form>
+        <p id="flag-error" class="error hidden"></p>
+      </div>
+
+      <div class="card">
+        <h2>Feature Flags</h2>
+        <button type="button" id="refresh-btn" class="btn-secondary">Refresh</button>
+        <div id="flags-loading" class="hidden">Loading…</div>
+        <table id="flags-table">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Status</th>
+              <th>Description</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="flags-body"></tbody>
+        </table>
+        <p id="flags-empty" class="hint hidden">No feature flags yet.</p>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

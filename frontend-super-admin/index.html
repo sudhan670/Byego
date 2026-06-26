@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Super Admin — Byego Feature Flags</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Super Admin</h1>
+      <p class="subtitle">Organization management</p>
+    </header>
+
+    <div id="login-section" class="card">
+      <h2>Login</h2>
+      <form id="login-form">
+        <label>Email<input type="email" id="login-email" required placeholder="superadmin@byego.local" /></label>
+        <label>Password<input type="password" id="login-password" required placeholder="SuperAdmin123!" /></label>
+        <button type="submit">Sign in</button>
+      </form>
+      <p id="login-error" class="error hidden"></p>
+    </div>
+
+    <div id="dashboard" class="hidden">
+      <div class="toolbar">
+        <span id="user-info"></span>
+        <button type="button" id="logout-btn" class="btn-secondary">Logout</button>
+      </div>
+
+      <div class="card">
+        <h2>Create Organization</h2>
+        <form id="create-org-form">
+          <label>Name<input type="text" id="org-name" required placeholder="Acme Corp" /></label>
+          <label>Slug <span class="hint">(optional, auto-generated from name)</span>
+            <input type="text" id="org-slug" placeholder="acme-corp" pattern="[a-z0-9-]+" />
+          </label>
+          <button type="submit">Create</button>
+        </form>
+        <p id="create-error" class="error hidden"></p>
+        <p id="create-success" class="success hidden"></p>
+      </div>
+
+      <div class="card">
+        <h2>Organizations</h2>
+        <button type="button" id="refresh-btn" class="btn-secondary">Refresh</button>
+        <div id="orgs-loading" class="hidden">Loading…</div>
+        <table id="orgs-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Slug</th>
+              <th>Users</th>
+              <th>Flags</th>
+              <th>Created</th>
+            </tr>
+          </thead>
+          <tbody id="orgs-body"></tbody>
+        </table>
+        <p id="orgs-empty" class="hint hidden">No organizations yet.</p>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

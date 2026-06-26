@@ -1,0 +1,3 @@
+backend/data/
+firebase-service-account.json
+.env

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>End User — Byego Feature Flags</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Feature Check</h1>
+      <p class="subtitle">Check whether a feature is enabled for your organization</p>
+    </header>
+
+    <div id="auth-section" class="card">
+      <div class="tabs">
+        <button type="button" class="tab active" data-tab="login">Login</button>
+        <button type="button" class="tab" data-tab="signup">Sign up</button>
+      </div>
+
+      <form id="login-form" class="auth-form">
+        <h2>Login</h2>
+        <label>Email<input type="email" id="login-email" required /></label>
+        <label>Password<input type="password" id="login-password" required /></label>
+        <button type="submit">Sign in</button>
+      </form>
+
+      <form id="signup-form" class="auth-form hidden">
+        <h2>Sign up</h2>
+        <label>Email<input type="email" id="signup-email" required /></label>
+        <label>Password <span class="hint">(min 8 characters)</span>
+          <input type="password" id="signup-password" required minlength="8" />
+        </label>
+        <label>Organization slug
+          <input type="text" id="signup-org-slug" required placeholder="acme-corp" />
+        </label>
+        <button type="submit">Create account</button>
+      </form>
+
+      <p id="auth-error" class="error hidden"></p>
+    </div>
+
+    <div id="dashboard" class="hidden">
+      <div class="toolbar">
+        <div>
+          <strong id="user-email"></strong>
+          <span class="hint" id="org-info"></span>
+        </div>
+        <button type="button" id="logout-btn" class="btn-secondary">Logout</button>
+      </div>
+
+      <div class="card">
+        <h2>Check Feature</h2>
+        <form id="check-form">
+          <label>Feature key
+            <input type="text" id="feature-key" required placeholder="dark_mode" />
+          </label>
+          <button type="submit">Check status</button>
+        </form>
+
+        <div id="result" class="result hidden">
+          <p id="result-message"></p>
+          <p id="result-detail" class="hint"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
